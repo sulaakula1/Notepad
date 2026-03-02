@@ -5,8 +5,16 @@ export default {
     return {
       noteTitle: "",
       noteText: "",
-      notes: [],
-
+            notes: JSON.parse(localStorage.getItem('my-notes') || '[]'),
+      
+    }
+  },
+  watch: {
+    notes: {
+      handler(newNotes) {
+        localStorage.setItem('my-notes', JSON.stringify(newNotes));
+      },
+      deep: true 
     }
   },
   methods: {
